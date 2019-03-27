@@ -1,8 +1,11 @@
+
+-- Questao 1
 sublistas :: [a] -> [[a]]
 sublistas [] = [[]]
 sublistas (x:xs) = sublistas xs ++ map (\ys -> x:ys ) (sublistas xs) 
 
 
+-- Questao 2
 filtrarEInserir :: [[Int]] -> Int -> ([[Int]], Int)
 filtrarEInserir [] _ = ([], 0)
 filtrarEInserir a b = (x, y)
@@ -27,12 +30,13 @@ somaImpares = filterSoma odd
 somaPares :: [Int] -> Int
 somaPares = filterSoma even
 
+-- Questao 3
 altMap :: (a -> b) -> (a -> b) -> [a] -> [b]
 altMap _ _ [] = []
 altMap f _ [x] = [f(x)]
 altMap f g (x:y:z) = f(x) : g(y) : altMap (f) (g) (z)
 
-
+-- Questao 4
 listaPoli :: [(Integer,Integer,Integer)] -> [Integer -> Integer]
 listaPoli coefs = map (\ (a, b, c) -> poli(a) (b) (c)) (coefs)
 
@@ -42,6 +46,7 @@ poli a b c = (\x ->  a * (x*x) + b * (x) + c )
 appListPoli :: [Integer -> Integer] -> [Integer] -> [Integer]
 appListPoli fs arr = [ f x | (f, x) <- zip (fs) (arr)]
 
+-- Questao 5
 data Mobile = Pendente Int | Barra Mobile Mobile
 
 peso :: Mobile -> Int
