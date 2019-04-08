@@ -34,4 +34,5 @@ instance Show Lampada where
 instance Eq Lampada where
     (==) (Compacta fab pot) (Compacta fab2 pot2) = (fab == fab2) && (pot == pot2)
     (==) (Incandescente fab pot) (Incandescente fab2 pot2) = (fab == fab2) && (pot == pot2)
-    (==) _ _ = False
+    (==) (Compacta _ _ ) (Incandescente _ _) = False
+    (==) (Incandescente _ _ ) (Compacta _ _) = False

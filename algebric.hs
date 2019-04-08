@@ -29,6 +29,10 @@ fromList (x:xs) = (Node (x) (fromList xs))
 
 data Tree t = TreeNil | TreeNode t (Tree t) (Tree t)
 
+instance (Show t) => Show (Tree t) where
+    show (TreeNil) = ""
+    show (TreeNode v _ _) = "(" ++ (show v) ++ ")" 
+
 depth :: Tree t -> Int
 depth TreeNil = 0
 depth (TreeNode _ l r) = 1 + max (depth l) (depth r)
@@ -40,3 +44,11 @@ collapse (TreeNode value left right) = value : (collapse (left) ++ collapse (rig
 mapTree :: (t -> u) -> Tree t -> Tree u 
 mapTree _ TreeNil = TreeNil
 mapTree f (TreeNode value left right) = (TreeNode (f value) (mapTree (f) (left)) (mapTree (f) (right)))
+
+in_order :: Tree t -> [t]
+in_order TreeNil = []
+in_order (TreeNode value left right) = (in_order left) ++ [value] ++ (in_order right)
+
+pre_order :: Tree t -> [t]
+pre_order TreeNil = []
+pre_order (TreeNode value left right) = [value] ++ (pre_order left) ++ (pre_order right)
