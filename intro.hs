@@ -1,4 +1,4 @@
--- BASIC HASKELL
+-- BASIC  HASKELL
 fat :: Int -> Int
 fat x 
  | x < 1 = 1
